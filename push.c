@@ -2,8 +2,12 @@
 
 void push_top(stack_t **stack, unsigned int line_number)
 {
-	stack_t *top = *stack;
-	stack_t *list = malloc(sizeof(stack_t));
+	stack_t *top;
+	stack_t *list;
+	(void)line_number;
+
+	top = *stack;
+	list = malloc(sizeof(stack_t));
 
 	if (!list)
 	{

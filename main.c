@@ -3,13 +3,22 @@ int data = 0;
 
 int main(int argc, char **argv)
 {
+    FILE *file;
+    stack_t *top;
+    char buffer[1024];
+    char **arr;
+    int line;
+    bool error;
+    size_t i;
+    int y;
+
     if (argc != 2)
     {
         fprintf(stderr, "USAGE: monty file\n");
         exit(EXIT_FAILURE);
     }
 
-    FILE *file = fopen(argv[1], "r");
+    file = fopen(argv[1], "r");
 
     if (!file)
     {
@@ -17,11 +26,8 @@ int main(int argc, char **argv)
         exit(EXIT_FAILURE);
     }
 
-    stack_t *top = NULL;
-    char buffer[1024];
-    char **arr;
-    int line = 0;
-    bool error;
+    top = NULL;
+    line = 0;
     
     while (1)
     {
@@ -30,7 +36,7 @@ int main(int argc, char **argv)
         if (feof(file) || ferror(file)) break;
         error = false;
         arr = read1(buffer);
-        for (int i = 0; i < strlen(arr[1]); i++)
+        for (i = 0; i < strlen(arr[1]); i++)
         {
             if (!isdigit(arr[1][i]))
             {
@@ -41,7 +47,7 @@ int main(int argc, char **argv)
 
         data = atoi(arr[1]);
         check(&top, arr, error, line);
-        for (int i = 0; i < 2; i++) free(arr[i]);
+        for (y = 0; y < 2; y++) free(arr[y]);
         free(arr);
     }
 
