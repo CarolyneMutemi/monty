@@ -44,6 +44,7 @@ void trim(char *s);
 void read(char *buffer);
 char **read1(char *buffer);
 size_t len(stack_t *stack);
+bool check_string(char *s);
 void check(stack_t **top, char **arr, bool error, unsigned int line);
 void nothing(stack_t **stack, unsigned int line_number);
 void print_all(stack_t **stack, unsigned int line_number);

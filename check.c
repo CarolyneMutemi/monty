@@ -43,11 +43,13 @@ void check(stack_t **top, char **arr, bool error, unsigned int line)
 	{
 		nop.f(top, line);
 	}
-	else if ((strlen(arr[0]) == 1 && isspace(arr[0][0])) ||  arr[0][0] == 0)
+	else if ((strlen(arr[0]) == 1 && isspace(arr[0][0])) || strlen(arr[0]) == 0)
+    {}
+	else if (!check_string(arr[0]))
 	{}
-	else
-	{
-		fprintf(stderr, "L%d: unknown instruction %s\n", line, arr[0]);
-		exit(EXIT_FAILURE);
-	}
+    else
+    {
+        fprintf(stderr, "L%d: unknown instruction %s: Len = %ld\n", line, arr[0], strlen(arr[0]));
+        exit(EXIT_FAILURE);
+    }
 }
