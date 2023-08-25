@@ -18,7 +18,7 @@ void check(stack_t **top, char **arr, bool error, unsigned int line)
 	{
 		if (error)
 		{
-			fprintf(stderr, "EXIT_FAILURE L%d: usage: push integer\n", line);
+			fprintf(stderr, "L%d: usage: push integer\n", line);
 			exit(EXIT_FAILURE);
 		}
 		push.f(top, line);
