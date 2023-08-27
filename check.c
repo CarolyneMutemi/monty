@@ -9,6 +9,7 @@ void check(stack_t **top, char **arr, bool error, unsigned int line)
 	instruction_t swap = {"swap", &swap_data};
 	instruction_t add = {"add", &add_data};
 	instruction_t nop = {"nop", &nothing};
+	instruction_t sub = {"sub", &sub_data};
 
 	if (strlen(arr[0]) ==  strlen(pall.opcode) && strstr(arr[0], pall.opcode))
 	{
@@ -43,13 +44,17 @@ void check(stack_t **top, char **arr, bool error, unsigned int line)
 	{
 		nop.f(top, line);
 	}
+	else if (strlen(arr[0]) == strlen(sub.opcode) && strstr(arr[0], sub.opcode))
+	{
+		sub.f(top, line);
+	}
 	else if ((strlen(arr[0]) == 1 && isspace(arr[0][0])) || strlen(arr[0]) == 0)
     {}
 	else if (!check_string(arr[0]))
 	{}
     else
     {
-        fprintf(stderr, "L%d: unknown instruction %s: Len = %ld\n", line, arr[0], strlen(arr[0]));
+        fprintf(stderr, "L%d: unknown instruction %s\n", line, arr[0]);
         exit(EXIT_FAILURE);
     }
 }

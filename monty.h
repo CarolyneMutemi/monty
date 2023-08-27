@@ -53,6 +53,7 @@ void print_top(stack_t **stack, unsigned int line_number);
 void pop_top(stack_t **stack, unsigned int line_number);
 void swap_data(stack_t **stack, unsigned int line_number);
 void add_data(stack_t **stack, unsigned int line_number);
+void sub_data(stack_t **stack, unsigned int line_number);
 void free_stack(stack_t *top);
 
 #endif
