@@ -36,12 +36,26 @@ int main(int argc, char **argv)
         if (feof(file) || ferror(file)) break;
         error = false;
         arr = read1(buffer);
-        for (i = 0; i < strlen(arr[1]); i++)
+        if (arr[1][0] == '-' || arr[1][0] == '+')
         {
-            if (!isdigit(arr[1][i]))
+            for (i = 1; i < strlen(arr[1]); i++)
             {
-                error = true;
-                break;
+                if (!isdigit(arr[1][i]))
+                {
+                    error = true;
+                    break;
+                }
+            }
+        }
+        else
+        {
+            for (i = 0; i < strlen(arr[1]); i++)
+            {
+                if (!isdigit(arr[1][i]))
+                {
+                    error = true;
+                    break;
+                }
             }
         }
 
