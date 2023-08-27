@@ -45,7 +45,8 @@ void read(char *buffer);
 char **read1(char *buffer);
 size_t len(stack_t *stack);
 bool check_string(char *s);
-void check(stack_t **top, char **arr, bool error, unsigned int line);
+void end(stack_t **stack);
+void check(stack_t **top, char **arr, bool error, bool *mode, unsigned int line);
 void nothing(stack_t **stack, unsigned int line_number);
 void print_all(stack_t **stack, unsigned int line_number);
 void push_top(stack_t **stack, unsigned int line_number);
@@ -54,6 +55,15 @@ void pop_top(stack_t **stack, unsigned int line_number);
 void swap_data(stack_t **stack, unsigned int line_number);
 void add_data(stack_t **stack, unsigned int line_number);
 void sub_data(stack_t **stack, unsigned int line_number);
+void div_data(stack_t **stack, unsigned int line_number);
+void mul_data(stack_t **stack, unsigned int line_number);
+void mod_data(stack_t **stack, unsigned int line_number);
+void print_top_char(stack_t **stack, unsigned int line_number);
+void print_string(stack_t **stack, unsigned int line_number);
+void rotl_stack(stack_t **stack, unsigned int line_number);
+void rotr_stack(stack_t **stack, unsigned int line_number);
+void queue_mode(stack_t **stack, unsigned int line_number);
+void stack_mode(stack_t **stack, unsigned int line_number);
 void free_stack(stack_t *top);
 
 #endif

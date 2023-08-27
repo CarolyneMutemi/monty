@@ -9,8 +9,11 @@ int main(int argc, char **argv)
     char **arr;
     int line;
     bool error;
+    bool mode;
     size_t i;
     int y;
+
+    mode = true;
 
     if (argc != 2)
     {
@@ -60,7 +63,7 @@ int main(int argc, char **argv)
         }
 
         data = atoi(arr[1]);
-        check(&top, arr, error, line);
+        check(&top, arr, error, &mode, line);
         for (y = 0; y < 2; y++) free(arr[y]);
         free(arr);
     }

@@ -1,6 +1,6 @@
 #include "monty.h"
 
-void check(stack_t **top, char **arr, bool error, unsigned int line)
+void check(stack_t **top, char **arr, bool error, bool *mode, unsigned int line)
 {
 	instruction_t pall = {"pall", &print_all};
 	instruction_t push = {"push", &push_top};
@@ -10,6 +10,15 @@ void check(stack_t **top, char **arr, bool error, unsigned int line)
 	instruction_t add = {"add", &add_data};
 	instruction_t nop = {"nop", &nothing};
 	instruction_t sub = {"sub", &sub_data};
+	instruction_t div = {"div", &div_data};
+	instruction_t mul = {"mul", &mul_data};
+	instruction_t mod = {"mod", &mod_data};
+	instruction_t pchar = {"pchar", &print_top_char};
+	instruction_t pstr = {"pstr", &print_string};
+	instruction_t rotl = {"rotl", &rotl_stack};
+	instruction_t rotr = {"rotr", &rotr_stack};
+	instruction_t stack = {"stack", &stack_mode};
+	instruction_t queue = {"queue", &queue_mode};
 
 	if (strlen(arr[0]) ==  strlen(pall.opcode) && strstr(arr[0], pall.opcode))
 	{
@@ -22,7 +31,11 @@ void check(stack_t **top, char **arr, bool error, unsigned int line)
 			fprintf(stderr, "L%d: usage: push integer\n", line);
 			exit(EXIT_FAILURE);
 		}
-		push.f(top, line);
+
+		if (*mode == false)
+			end(top);
+		else
+			push.f(top, line);
 	}
 	else if (strlen(arr[0]) == strlen(pint.opcode) && strstr(arr[0], pint.opcode))
 	{
@@ -47,6 +60,42 @@ void check(stack_t **top, char **arr, bool error, unsigned int line)
 	else if (strlen(arr[0]) == strlen(sub.opcode) && strstr(arr[0], sub.opcode))
 	{
 		sub.f(top, line);
+	}
+	else if (strlen(arr[0]) == strlen(div.opcode) && strstr(arr[0], div.opcode))
+	{
+		div.f(top, line);
+	}
+	else if (strlen(arr[0]) == strlen(mul.opcode) && strstr(arr[0], mul.opcode))
+	{
+		mul.f(top, line);
+	}
+	else if (strlen(arr[0]) == strlen(mod.opcode) && strstr(arr[0], mod.opcode))
+	{
+		mod.f(top, line);
+	}
+	else if (strlen(arr[0]) == strlen(pchar.opcode) && strstr(arr[0], pchar.opcode))
+	{
+		pchar.f(top, line);
+	}
+	else if (strlen(arr[0]) == strlen(pstr.opcode) && strstr(arr[0], pstr.opcode))
+	{
+		pstr.f(top, line);
+	}
+	else if (strlen(arr[0]) == strlen(rotl.opcode) && strstr(arr[0], rotl.opcode))
+	{
+		rotl.f(top, line);
+	}
+	else if (strlen(arr[0]) == strlen(rotr.opcode) && strstr(arr[0], rotr.opcode))
+	{
+		rotr.f(top, line);
+	}
+	else if (strlen(arr[0]) == strlen(stack.opcode) && strstr(arr[0], stack.opcode))
+	{
+		*mode = true;
+	}
+	else if (strlen(arr[0]) == strlen(queue.opcode) && strstr(arr[0], queue.opcode))
+	{
+		*mode = false;
 	}
 	else if ((strlen(arr[0]) == 1 && isspace(arr[0][0])) || strlen(arr[0]) == 0)
     {}
